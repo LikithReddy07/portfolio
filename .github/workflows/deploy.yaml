@@ -47,7 +47,6 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           cd deploy
-          echo "${{ secrets.GITHUB_TOKEN }}"
           git init
           git checkout -b deploy
           git add .
