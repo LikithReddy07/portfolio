@@ -50,4 +50,5 @@ jobs:
           git checkout -b deploy
           git add .
           git commit -m "Deploy to GitHub Pages"
-          GIT_TRACE=1 GIT_CURL_VERBOSE=1 git push --force "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" deploy:deploy
+          # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git 
+          git push --force "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" deploy:deploy
