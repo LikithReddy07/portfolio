@@ -19,10 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "localServer": "react-scripts build && node ./local_server/server.cjs",
     "build": "react-scripts build",
-    "server": "node server.cjs",
-    "local": "react-scripts build && node server.cjs",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "homepage": "/portfolio",
