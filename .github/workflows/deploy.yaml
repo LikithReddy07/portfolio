@@ -46,16 +46,13 @@ jobs:
         run: |
           cd deploy
           git init
-          git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
+          git checkout -b deploy
           git add .
           git commit -m "Deploy to GitHub Pages"
-          # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git 
-          git push origin deploy --force
-
-      # - name: Activate Github Pages
-      #   run: |
-      #     curl -X POST \
-      #       -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
-      #       -H "Accept: application/vnd.github.v3+json" \
-      #       https://api.github.com/repos/${{ github.repository }}/pages \
-      #       -d '{"source": {"branch": "deploy", "path": "/"}}'
+          git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
+          # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git
+          if [ -n "$(git status --porcelain)" ]; then
+            git push origin deploy --force
+          else
+            echo "No changes to deploy"
+          fi
