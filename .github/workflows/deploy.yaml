@@ -52,11 +52,8 @@ jobs:
           git commit -m "Deploy to GitHub Pages"
           # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git 
           git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
-          echo "git remote added"
           git push origin --delete deploy
-          echo "deleted remote git deploy branch"
           git push --set-upstream origin deploy
-          echo "pushed to remote git"
 
       - name: Activate Github Pages
         run: |
@@ -65,4 +62,3 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/${{ github.repository }}/pages \
             -d '{"source": {"branch": "deploy", "path": "/"}}'
-          echo "deployed"
