@@ -60,8 +60,6 @@ jobs:
 
       - name: Activate Github Pages
         run: |
-          - name: Enable GitHub Pages
-        run: |
           curl -X POST \
             -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
