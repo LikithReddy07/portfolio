@@ -10,11 +10,11 @@ app.use("/portfolio/ping", (_req, res) => {
   res.status(200).json({ health: "health check successful" });
 });
 
-app.use("/portfolio", express.static(path.join(__dirname, "build")));
+app.use("/portfolio", express.static(path.join(__dirname, "./../build")));
 
 app.get("/portfolio/*", (_req, res) => {
   console.log("fallback to index");
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "./../build", "index.html"));
 });
 
 app.listen(PORT, () => {
