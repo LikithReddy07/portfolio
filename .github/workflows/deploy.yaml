@@ -53,4 +53,4 @@ jobs:
           # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git 
           git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
           git push origin --delete deploy
-          git push --force "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" deploy:deploy
+          git push --set-upstream origin deploy
