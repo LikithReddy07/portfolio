@@ -42,11 +42,17 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           mkdir -p deploy
+          ls -alt
           cd deploy
+          pwd
           git fetch
           git checkout deploy
+          pwd
+          ls -alt
           rm -rf ./*
+          ls -alt
           cp -r ./../dist/* ./
+          ls -alt
           git add --all
           git commit -m "Deploy to GitHub Pages"
           # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git
