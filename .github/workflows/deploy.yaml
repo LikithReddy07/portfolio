@@ -1,0 +1,58 @@
+# Name of the Event
+name: Deploy to GitHub Pages
+
+# When should it happen
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.17.0"
+
+      - name: Install dependencies and build application
+        run: |
+          npm install
+          npm run build
+
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p deploy
+          cp -r build/* deploy/
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Deploy to GitHub Pages
+        run: |
+          cd deploy
+          git init
+          git checkout -b deploy
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
+          # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git
+          if [ -n "$(git status --porcelain)" ]; then
+            git push origin deploy --force
+          else
+            echo "No changes to deploy"
+          fi
