@@ -41,7 +41,7 @@ jobs:
         run: |
           mkdir -p deploy
           cd deploy
-          git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
+          # git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
           git fetch
           ls -alt
           git checkout -b deploy
@@ -51,7 +51,8 @@ jobs:
           git commit -m "Deploy to GitHub Pages"
           # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git
           if [ -n "$(git status --porcelain)" ]; then
-            git push origin deploy --force
+            # git push origin deploy --force
+            git push --force "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" deploy:deploy
           else
             echo "No changes to deploy"
           fi
