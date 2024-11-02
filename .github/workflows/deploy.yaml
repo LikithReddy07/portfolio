@@ -45,7 +45,7 @@ jobs:
           git checkout deploy
           rm -rf ./*
           cp -r ./../dist/* ./
-          git add .
+          git add --all
           git commit -m "Deploy to GitHub Pages"
           # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git
           if [ -n "$(git status --porcelain)" ]; then
