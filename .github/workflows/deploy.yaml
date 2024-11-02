@@ -43,7 +43,7 @@ jobs:
           cd deploy
           # git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
           git fetch
-          git checkout -b deploy
+          git checkout deploy
           git pull
           ls -alt
           rm -rf ./*
