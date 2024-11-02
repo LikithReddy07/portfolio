@@ -32,11 +32,6 @@ jobs:
           npm install
           npm run build
 
-      - name: Prepare deployment directory
-        run: |
-          mkdir -p deploy
-          cp -r dist/* deploy/
-
       - name: Configure Git
         run: |
           git config --global user.name "GitHub Action"
@@ -44,12 +39,16 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
+          mkdir -p deploy
           cd deploy
-          git init
+          git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
+          git fetch
+          ls -alt
           git checkout -b deploy
+          rm -rf ./*
+          cp -r ./../dist/* ./
           git add .
           git commit -m "Deploy to GitHub Pages"
-          git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
           # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git
           if [ -n "$(git status --porcelain)" ]; then
             git push origin deploy --force
