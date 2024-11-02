@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "20.17.0"
 
@@ -41,18 +41,14 @@ jobs:
         run: |
           mkdir -p deploy
           cd deploy
-          # git remote add origin "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git"
           git fetch
           git checkout deploy
-          git pull
-          ls -alt
           rm -rf ./*
           cp -r ./../dist/* ./
           git add .
           git commit -m "Deploy to GitHub Pages"
           # GIT_TRACE=1 GIT_CURL_VERBOSE=1 git
           if [ -n "$(git status --porcelain)" ]; then
-            # git push origin deploy --force
             git push --force "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" deploy:deploy
           else
             echo "No changes to deploy"
