@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "/portfolio",
   "scripts": {
-    "dev": "vite --config configs/vite.config.ts",
+    "dev": "vite --config configs/vite.config.ts --host",
     "build": "tsc -b && vite build --config configs/vite.config.ts",
     "localServer": "tsc -b && vite build --config configs/vite.config.ts && node ./local_server/server.cjs",
     "lint": "eslint -c configs/eslint.config.js .",

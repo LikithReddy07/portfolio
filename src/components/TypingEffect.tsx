@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
+import "./../css/Components.css"
 
-function TypingEffect() {
-  const text = "I'm Likith Reddy, A Full Stack Developer!";
+interface TypingEffectProps {
+  text: string;
+  typingSpeed: number;
+}
+
+function TypingEffect(props: TypingEffectProps) {
+  const {text, typingSpeed} = props;
   const [displayedText, setDisplayedText] = useState("");
-  const typingSpeed = 100; // Speed in milliseconds
 
   useEffect(() => {
     let index = 0;
@@ -21,7 +26,7 @@ function TypingEffect() {
   }, []);
 
   return (
-    <div style={{ fontSize: "24px", fontFamily: "monospace" }}>
+    <div id="typingEffectElement" className="alef-regular" style={{ fontSize: "50px" }}>
       {displayedText}
     </div>
   );

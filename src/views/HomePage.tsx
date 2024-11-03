@@ -3,7 +3,7 @@ import TypingEffect from "../components/TypingEffect";
 function HomePage() {
   return (
     <div>
-      <TypingEffect />
+      <TypingEffect text="Likith Reddy" typingSpeed={100}/>
     </div>
   );
 }
