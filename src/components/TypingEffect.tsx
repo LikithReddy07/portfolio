@@ -1,5 +1,5 @@
+import "./../css/Components.css";
 import { useEffect, useState } from "react";
-import "./../css/Components.css"
 
 interface TypingEffectProps {
   text: string;
@@ -7,27 +7,45 @@ interface TypingEffectProps {
 }
 
 function TypingEffect(props: TypingEffectProps) {
-  const {text, typingSpeed} = props;
-  const [displayedText, setDisplayedText] = useState("");
+  const [currentText, setCurrentText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [lineIndex, setLineIndex] = useState(0);
+  const texts = ["Hi, I'm Likith!", "A Full Stack Developer"];
 
+  const story =
+    "Ever since I was a kid, computers and coding have fascinated me. This passion grew over the years, leading me to become a full-stack engineer with skills in frontend and backend technologies, cloud services, and building efficient CI/CD pipelines.";
   useEffect(() => {
-    let index = 0;
-
-    const typingInterval = setInterval(() => {
-      setDisplayedText((prev) => prev + text.charAt(index));
-      index += 1;
-
-      if (index === text.length) {
-        clearInterval(typingInterval);
+    if (lineIndex < texts.length) {
+      if (currentIndex < texts[lineIndex].length) {
+        const timeout = setTimeout(() => {
+          setCurrentText((prev) => prev + texts[lineIndex][currentIndex]);
+          setCurrentIndex((prev) => prev + 1);
+        }, 60); // Adjust the speed as needed
+        return () => clearTimeout(timeout);
+      } else {
+        const timeout = setTimeout(() => {
+          setCurrentText("");
+          setCurrentIndex(0);
+          setLineIndex((prev) => prev + 1);
+        }, 500); // Delay before starting the next line
+        return () => clearTimeout(timeout);
       }
-    }, typingSpeed);
-
-    return () => clearInterval(typingInterval);
-  }, []);
-
+    }
+  }, [currentIndex, lineIndex, texts]);
   return (
-    <div id="typingEffectElement" className="alef-regular" style={{ fontSize: "50px" }}>
-      {displayedText}
+    <div id="typingEffectElement" className="baumans-regular">
+      {texts.slice(0, lineIndex).map((text, index) => (
+        <div key={index} style={{ fontSize: `${60 + index * 10}px` }}>
+          {text}
+        </div>
+      ))}
+      {lineIndex < texts.length ? (
+        <span style={{ fontSize: `${60 + lineIndex * 10}px` }}>
+          {currentText}
+        </span>
+      ) : (
+        <div style={{ fontSize: "30px" }}>{story}</div>
+      )}
     </div>
   );
 }
