@@ -1,10 +1,15 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import './css/App.css';
+import HomePage from './views/HomePage';
+import Background from "./components/Background";
 
 function App() {
   return (
-    <Router basename="/portfolio">
-      <div>Hello World</div>
-    </Router>
+    <div className="App">
+      <main className="app-content">
+        <Background />
+        <HomePage />
+      </main>
+    </div>
   );
 }
 

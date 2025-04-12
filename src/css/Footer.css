@@ -1,0 +1,42 @@
+.site-footer {
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 1px solid #333;
+  margin-top: 60px; /* Space above footer */
+  background-color: #1a1a1a; /* Slightly different footer background */
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  margin: 0 15px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: #00eaff;
+}
+
+.footer-quote {
+  font-style: italic;
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Placeholder for stats */
+.footer-stats {
+  margin-top: 15px;
+  color: #777;
+  font-size: 0.9rem;
+}

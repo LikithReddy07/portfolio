@@ -1,0 +1,63 @@
+#contact .contact-form {
+  max-width: 600px;
+  margin: 30px auto 0 auto;
+  text-align: left;
+  background-color: #222; /* Form background */
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ccc;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #333;
+  color: #eee;
+  font-size: 1rem;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #00aaff;
+  box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
+}
+
+.form-group textarea {
+  resize: vertical; /* Allow vertical resize */
+  min-height: 120px;
+}
+
+#contact button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+}
+
+.social-links {
+  margin-top: 40px;
+}
+
+.social-links a {
+  margin: 0 15px;
+  font-size: 1.5rem; /* Larger icons/links */
+  /* Add icons using FontAwesome or SVGs later */
+}

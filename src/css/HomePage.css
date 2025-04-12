@@ -1,0 +1,125 @@
+.section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.about {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+}
+
+.projects {
+  background: #f4f4f4;
+}
+
+.contact {
+  background: #333;
+  color: white;
+}
+
+.highlight {
+  color: #000000;
+  font-weight: bold;
+}
+
+.cta-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #e6b800;
+  transform: scale(1.05);
+}
+
+.project-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.project-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.social-links a {
+  margin: 0 1rem;
+  color: #ffcc00;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+  color: #e6b800;
+}
+
+.hero-section {
+  min-height: 80vh; /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  color: #333333; /* Default text color for the section */
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  color: #1f99e0; /* Darker color for h1 */
+}
+
+.hero-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #495057; /* Slightly lighter dark color for h2 */
+  font-weight: normal;
+  text-transform: none; /* Override global h2 style */
+  letter-spacing: 1px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  color: #6c757d; /* Even lighter dark color for p */
+}
+
+.cta-buttons button {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  margin: 10px;
+}
+
+/* Specific button styles if needed */
+.cta-buttons button:nth-child(1) {
+  /* Style for View Projects */
+}
+.cta-buttons button:nth-child(2) {
+  background-color: transparent;
+  border: 2px solid #00aaff;
+  color: #00aaff;
+}
+.cta-buttons button:nth-child(2):hover {
+  background-color: #00aaff;
+  color: #fff;
+}
+.cta-buttons button:nth-child(3) {
+  /* Style for Let's Connect */
+}
