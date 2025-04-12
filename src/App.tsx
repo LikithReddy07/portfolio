@@ -1,13 +1,15 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import { AnimatedBackground } from "animated-backgrounds";
-import HomePage from "./views/HomePage";
+import './css/App.css';
+import HomePage from './views/HomePage';
+import Background from "./components/Background";
 
 function App() {
   return (
-    <Router basename="/portfolio">
-      <AnimatedBackground animationName="starryNight" />
-      <HomePage />
-    </Router>
+    <div className="App">
+      <main className="app-content">
+        <Background />
+        <HomePage />
+      </main>
+    </div>
   );
 }
 

@@ -1,0 +1,18 @@
+#blog .container {
+  max-width: 800px;
+}
+
+#blog p {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-bottom: 2rem;
+}
+
+/* Style for the placeholder - replace later */
+#blog div {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px dashed #555;
+  color: #888;
+  text-align: left;
+}
