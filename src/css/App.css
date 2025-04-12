@@ -1,0 +1,62 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling on the body */
+  font-family: sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+.app-nav {
+  background-color: #333;
+  padding: 10px 20px;
+  text-align: right; /* Align text (inline elements like links) to the right */
+  flex-shrink: 0; /* Prevent nav from shrinking */
+}
+
+.app-nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.app-nav a:hover {
+  text-decoration: underline;
+}
+
+.app-content {
+  flex-grow: 1; /* Allow content to take remaining space */
+  display: flex; /* Use flexbox to arrange sections */
+  overflow: hidden; /* Hide overflow within the content area */
+  /* If sections should be side-by-side: */
+  /* flex-direction: row; */
+  /* If sections should stack but only one visible (more complex): */
+   flex-direction: column; /* Keep stacking for now */
+   /* This simple setup might still cause overflow if content is too tall.
+      Consider making sections scrollable internally or using JS to show/hide.
+      For now, we rely on adjusting section content size. */
+}
+
+/* Style individual sections to fit */
+.app-content > section {
+  padding: 20px; /* Adjust padding */
+  /* If sections are side-by-side, control width: */
+  /* flex-basis: 100%; or specific widths */
+  /* If sections stack, control height potentially: */
+   overflow-y: auto; /* Allow internal scroll *if needed*, though goal is to avoid */
+   flex-shrink: 0; /* Prevent sections from shrinking if stacked */
+   /* A better approach for "no scroll" might be fixed height sections or JS view switching */
+   /* Trying to fit AboutPage without internal scroll */
+   max-height: calc(100vh - 50px); /* Approximate height minus nav */
+}
+
+/* Add scroll-margin-top to account for fixed/sticky nav if you implement that */
+section[id] {
+  scroll-margin-top: 60px; /* Adjust based on nav height */
+}

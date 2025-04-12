@@ -1,0 +1,16 @@
+#about .container {
+  max-width: 800px; /* Adjust width for about text */
+}
+
+#about p {
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+/* Style for the placeholder - replace later */
+#about div {
+  margin: 30px 0;
+  padding: 20px;
+  border: 1px dashed #555;
+  color: #888;
+}

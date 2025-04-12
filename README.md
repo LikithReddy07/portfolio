@@ -5,7 +5,7 @@
 ### Initialise the Application
 
 ```shell
-npm create vite@latest portfolio -- --template react-ts
+npm create vite@latest portfolio --template react-ts
 ```
 
 ### Declutter the root by moving the configs to a seperate directory

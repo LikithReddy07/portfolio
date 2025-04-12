@@ -1,0 +1,56 @@
+#projects .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 30px; /* Spacing between cards */
+  margin-top: 30px;
+}
+
+.project-card {
+  background-color: #222; /* Card background */
+  border: 1px solid #444;
+  padding: 25px;
+  border-radius: 8px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 170, 255, 0.1); /* Subtle glow on hover */
+}
+
+.project-card h3 {
+  color: #00eaff; /* Accent title */
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  color: #bbb;
+  margin-bottom: 15px;
+}
+
+.project-tags {
+  margin-bottom: 15px;
+}
+
+.project-tags .tag {
+  display: inline-block;
+  background-color: #444;
+  color: #00eaff;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.project-links a {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+}
