@@ -12,24 +12,6 @@ html, body, #root {
   height: 100vh; /* Full viewport height */
 }
 
-.app-nav {
-  background-color: #333;
-  padding: 10px 20px;
-  text-align: right; /* Align text (inline elements like links) to the right */
-  flex-shrink: 0; /* Prevent nav from shrinking */
-}
-
-.app-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.app-nav a:hover {
-  text-decoration: underline;
-}
-
 .app-content {
   flex-grow: 1; /* Allow content to take remaining space */
   display: flex; /* Use flexbox to arrange sections */
