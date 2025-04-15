@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./../css/HomePage.css";
 import myself from "./../assets/myself.png";
+import FloatingLogos from "../components/FloatingLogos";
 
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const description =
-    "I nearly have 3 years of experience creating reliable and scalable web applications using Java (Spring Boot), React, and AWS. Skilled in designing microservices, developing APIs, managing CI/CD pipelines, and enhancing system reliability. Proven track record of optimizing deployment processes and system performance to solve real - world challenges with strong focus on team collaboration, delivering impactful results.";
+    "I’m a software developer with nearly 3 years of experience building reliable and scalable web applications using Java (Spring Boot), React, and AWS. I specialize in designing microservices, developing robust APIs, and managing CI/CD pipelines to streamline deployment. With a strong focus on system performance and reliability, I’ve consistently delivered impactful solutions to real-world challenges. I thrive in collaborative environments and am passionate about driving results through clean, efficient, and maintainable code.";
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,7 +27,7 @@ const HomePage = () => {
         {isMobile ? (
           <div className="content-section-mobile">
             <h1>
-              Hello, I’m <span className="highlight">Likith</span>
+              Hello, I’m <span className="highlight">Likith!</span>
             </h1>
             <h2>
               <div>Full-Stack Developer</div>
@@ -37,8 +38,9 @@ const HomePage = () => {
           </div>
         ) : (
           <div className="content-section-desktop">
+            <FloatingLogos />
             <h1>
-              Hello, I’m <span className="highlight">Likith</span>
+              Hello, I’m <span className="highlight">Likith!</span>
             </h1>
             <h2>Full-Stack Developer | Cloud Architect | Tech Enthusiast</h2>
             <br></br>
