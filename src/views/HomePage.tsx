@@ -38,13 +38,13 @@ const HomePage = () => {
           </div>
         ) : (
           <div className="content-section-desktop">
-            <FloatingLogos />
             <h1>
               Hello, I’m <span className="highlight">Likith!</span>
             </h1>
             <h2>Full-Stack Developer | Cloud Architect | Tech Enthusiast</h2>
             <br></br>
             <p>{description}</p>
+            <FloatingLogos />
           </div>
         )}
         {/* <div className="cta-buttons">
