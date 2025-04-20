@@ -4,57 +4,57 @@
   justify-content: space-around;
   align-items: center;
   pointer-events: none;
-  gap: 30px;
+  gap: 2%;
 }
 
 .floating-logo-1:nth-child(1) {
-  width: 70px;
+  width: 8%;
 }
 
 .floating-logo-1:nth-child(2) {
-  width: 75px;
+  width: 9%;
 }
 
 .floating-logo-1:nth-child(3) {
-  width: 120px;
+  width: 15%;
 }
 
 .floating-logo-1:nth-child(4) {
-  width: 160px;
+  width: 20%;
 }
 
 .floating-logo-1:nth-child(5) {
-  width: 150px;
+  width: 15%;
 }
 
 .floating-logo-1:nth-child(6) {
-  width: 50px;
+  width: 6cap;
 }
 
 .floating-logo-1:nth-child(7) {
-  width: 80px;
+  width: 8%;
 }
 
 .floating-logo-2:nth-child(1) {
-  width: 120px;
+  width: 15%;
 }
 
 .floating-logo-2:nth-child(2) {
-  width: 90px;
+  width: 10%;
 }
 
 .floating-logo-2:nth-child(3) {
-  width: 120px;
+  width: 12%;
 }
 
 .floating-logo-2:nth-child(4) {
-  width: 80px;
+  width: 8%;
 }
 
 .floating-logo-2:nth-child(5) {
-  width: 160px;
+  width: 16%;
 }
 
 .floating-logo-2:nth-child(6) {
-  width: 80px;
+  width: 8%;
 }
