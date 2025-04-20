@@ -26,7 +26,6 @@ const FloatingLogos = () => {
         <img src={react} alt="react" className="floating-logo-1" />
       </div>
       <br></br>
-      <br></br>
       <div className="floating-logos">
         <img src={aws} alt="aws" className="floating-logo-2" />
         <img src={docker} alt="docker" className="floating-logo-2" />
