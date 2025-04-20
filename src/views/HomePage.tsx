@@ -42,7 +42,7 @@ const HomePage = () => {
               Hello, I’m <span className="highlight">Likith!</span>
             </h1>
             <h2>Full-Stack Developer | Cloud Architect | Tech Enthusiast</h2>
-            <br></br>
+            {/* <br></br> */}
             <p>{description}</p>
             <FloatingLogos />
           </div>
