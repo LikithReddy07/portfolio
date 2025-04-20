@@ -47,11 +47,6 @@ const HomePage = () => {
             <FloatingLogos />
           </div>
         )}
-        {/* <div className="cta-buttons">
-          <button>View Projects</button>
-          <button>Download Resume</button>
-          <button>Let’s Connect</button>
-        </div> */}
       </div>
       <div className="image-section">
         <img src={myself} alt="Likith" />
