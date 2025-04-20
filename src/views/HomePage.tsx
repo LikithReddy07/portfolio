@@ -6,7 +6,7 @@ import FloatingLogos from "../components/FloatingLogos";
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const description =
-    "I’m a software developer with nearly 3 years of experience building reliable and scalable web applications using Java (Spring Boot), React, and AWS. I specialize in designing microservices, developing robust APIs, and managing CI/CD pipelines to streamline deployment. With a strong focus on system performance and reliability, I’ve consistently delivered impactful solutions to real-world challenges. I thrive in collaborative environments and am passionate about driving results through clean, efficient, and maintainable code.";
+    "I’m a software developer with nearly 3 years of experience building reliable and scalable web applications using Java (Spring Boot), React, and AWS. I specialize in designing microservices, developing robust APIs, and managing CI/CD pipelines to streamline deployment. With a strong focus on system performance and reliability, I’ve consistently delivered impactful solutions to real-world challenges. I thrive in collaborative environments and passionate about driving results through clean, efficient, and maintainable code.";
 
   useEffect(() => {
     const handleResize = () => {
