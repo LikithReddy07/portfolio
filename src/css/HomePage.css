@@ -70,10 +70,12 @@
   /* Style for Let's Connect */
 }
 
+/* Distribute all items in the home-container to occupy full vertical space */
 .home-container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  padding: 2rem;
+  /* height: 100vh; */
 }
 
 .content-section {
@@ -98,9 +100,9 @@
 }
 
 .content-section-desktop p {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-left: 1rem;
-  margin-right: 16rem;
+  margin-right: 3rem;
   margin-bottom: 1rem;
   text-align: justify;
 }
