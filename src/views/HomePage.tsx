@@ -27,7 +27,7 @@ const HomePage = () => {
         {isMobile ? (
           <div className="content-section-mobile">
             <h1>
-              Hello, I’m <span className="highlight">Likith!</span>
+              I’m <span className="highlight">Likith!</span>
             </h1>
             <h2>
               <div>Full-Stack Developer</div>
@@ -48,7 +48,9 @@ const HomePage = () => {
           </div>
         )}
       </div>
-      <div className="image-section">
+      <div
+        className={isMobile ? "image-section-mobile" : "image-section-desktop"}
+      >
         <img src={myself} alt="Likith" />
       </div>
     </div>
