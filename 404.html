@@ -1,7 +1,18 @@
 <!-- This file ensures that all routes fallback to index.html for GitHub Pages -->
 <script>
-  // Redirect all 404s to index.html
-  if (window.location.pathname !== '/portfolio/' && !window.location.pathname.startsWith('/portfolio/')) {
-    window.location.href = '/portfolio/';
-  }
+  // Redirect all 404s to index.html while preserving the path
+  const redirectToIndex = () => {
+    const path = window.location.pathname;
+    console.log('Current path:', path);
+    const base = '/portfolio';
+
+    if (path.startsWith(base)) {
+      const newPath = `${base}/index.html`;
+      console.log('Redirecting to:', newPath);
+      window.history.replaceState({}, '', path);
+      window.location.replace(newPath);
+    }
+  };
+
+  redirectToIndex();
 </script>
