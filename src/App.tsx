@@ -1,13 +1,16 @@
 import "./css/App.css";
-import HomePage from "./views/HomePage";
+import AppRoutes from "./routes/AppRoutes";
 import Background from "./components/Background";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <main className="app-content">
-        <Background />
-        <HomePage />
+        <Router basename="/portfolio">
+          <AppRoutes />
+          <Background />
+        </Router>
       </main>
     </div>
   );
