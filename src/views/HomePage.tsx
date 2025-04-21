@@ -33,7 +33,7 @@ const HomePage = () => {
             {/* <img src={logo} alt="logo" className="homepage-logo" /> */}
             {/* </div> */}
             <div className="header-links">
-              <a
+              {/* <a
                 href={
                   (window.location.pathname.endsWith("/")
                     ? window.location.pathname.slice(0, -1)
@@ -59,7 +59,12 @@ const HomePage = () => {
                 }
               >
                 Find Me
-              </a>
+              </a> */}
+
+              <a href="#/aboutMe">About Me</a>
+              <a href="#/Skill">Skillset</a>
+              <a href="#/Contact">Find Me</a>
+
               {/* <a href={window.location.pathname + "/Blog"}>Blog</a> */}
             </div>
           </div>
