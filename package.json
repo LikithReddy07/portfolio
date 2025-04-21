@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "/portfolio",
+  "homepage": "https://likithreddy07.github.io/portfolio",
   "scripts": {
     "dev": "vite --config configs/vite.config.ts --host",
     "build": "tsc -b && vite build --config configs/vite.config.ts",
