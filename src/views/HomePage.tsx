@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./../css/HomePage.css";
 import myself from "./../assets/myself.png";
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 import FloatingLogos from "../components/FloatingLogos";
 
 const HomePage = () => {
