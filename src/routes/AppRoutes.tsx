@@ -5,7 +5,7 @@ import AboutPage from "../views/AboutPage";
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" Component={HomePage} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/helloWorld" Component={() => <h1>Hello World</h1>} />
       <Route path="/aboutMe" Component={AboutPage} />
       <Route
