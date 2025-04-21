@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./../css/HomePage.css";
 import myself from "./../assets/myself.png";
+import logo from "../assets/logo.png";
 import FloatingLogos from "../components/FloatingLogos";
 
 const HomePage = () => {
@@ -23,14 +24,24 @@ const HomePage = () => {
 
   return (
     <div className="home-container">
-      <div className="header-container">
-        <div className="header">
-          <a href={window.location.pathname + "/aboutMe"}>About Me</a>
-          <a href={window.location.pathname + "/Skill"}>Skillset</a>
-          <a href={window.location.pathname + "/Contact"}>Find Me</a>
-          {/* <a href={window.location.pathname + "/Blog"}>Blog</a> */}
+      {isMobile ? (
+        <h1></h1>
+      ) : (
+        <div className="header-container">
+          <div className="header">
+            {/* <div className="logo"> */}
+            {/* <img src={logo} alt="logo" className="homepage-logo" /> */}
+            {/* </div> */}
+            <div className="header-links">
+              <a href={window.location.pathname + "/aboutMe"}>About Me</a>
+              <a href={window.location.pathname + "/Skill"}>Skillset</a>
+              <a href={window.location.pathname + "/Contact"}>Find Me</a>
+              {/* <a href={window.location.pathname + "/Blog"}>Blog</a> */}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
       <div className="content-section-container">
         <div className="content-section">
           {isMobile ? (
