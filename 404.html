@@ -1,0 +1,7 @@
+<!-- This file ensures that all routes fallback to index.html for GitHub Pages -->
+<script>
+  // Redirect all 404s to index.html
+  if (window.location.pathname !== '/portfolio/' && !window.location.pathname.startsWith('/portfolio/')) {
+    window.location.href = '/portfolio/';
+  }
+</script>
