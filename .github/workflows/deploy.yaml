@@ -39,7 +39,6 @@ jobs:
           mkdir -p deploy
           cp -r ./dist/* ./deploy/
           cd ./deploy/
-          ls -alt
           git init
           git checkout -B deploy
           git add --all
