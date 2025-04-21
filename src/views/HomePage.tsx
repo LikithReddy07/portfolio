@@ -33,9 +33,9 @@ const HomePage = () => {
             {/* <img src={logo} alt="logo" className="homepage-logo" /> */}
             {/* </div> */}
             <div className="header-links">
-              <a href={window.location.pathname + "/aboutMe"}>About Me</a>
-              <a href={window.location.pathname + "/Skill"}>Skillset</a>
-              <a href={window.location.pathname + "/Contact"}>Find Me</a>
+              <a href={window.location.pathname + "aboutMe"}>About Me</a>
+              <a href={window.location.pathname + "Skill"}>Skillset</a>
+              <a href={window.location.pathname + "Contact"}>Find Me</a>
               {/* <a href={window.location.pathname + "/Blog"}>Blog</a> */}
             </div>
           </div>
