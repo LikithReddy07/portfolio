@@ -52,7 +52,7 @@ export function Education() {
                 {entry.major && (
                   <span className="text-text-secondary font-normal">
                     {" "}
-                    — {entry.major}
+                    [Major : {entry.major}]
                   </span>
                 )}
               </h3>
