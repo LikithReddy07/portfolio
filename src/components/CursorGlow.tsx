@@ -3,7 +3,7 @@ import { motion, useSpring } from "framer-motion";
 
 /**
  * Subtle warm glow that follows cursor — desktop only.
- * Adds a sense of interactivity and depth without being distracting.
+ * Adds a sense of warmth and depth, like a light source moving through the particle field.
  */
 export function CursorGlow() {
   const [visible, setVisible] = useState(false);
@@ -41,7 +41,7 @@ export function CursorGlow() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 -z-10 pointer-events-none w-[500px] h-[500px] rounded-full will-change-transform"
+      className="fixed top-0 left-0 -z-10 pointer-events-none w-[600px] h-[600px] rounded-full will-change-transform"
       aria-hidden="true"
       style={{
         x,
@@ -49,7 +49,7 @@ export function CursorGlow() {
         translateX: "-50%",
         translateY: "-50%",
         background:
-          "radial-gradient(circle, rgba(232, 197, 116, 0.06) 0%, rgba(232, 197, 116, 0.02) 30%, transparent 70%)",
+          "radial-gradient(circle, rgba(232, 197, 116, 0.07) 0%, rgba(232, 197, 116, 0.03) 25%, transparent 65%)",
       }}
     />
   );
