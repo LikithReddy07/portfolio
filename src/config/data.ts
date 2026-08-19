@@ -20,7 +20,7 @@ export const heroData = {
     "AI-Augmented Developer",
   ],
   tagline:
-    "Building systems that scale at 30,000 feet. Microservices, serverless APIs, and cloud-native architectures — optimized for performance, observability, and developer velocity.",
+    "Building systems that scale at 30,000 feet. Microservices, serverless APIs, and cloud-native architectures optimized for performance, observability, and developer velocity.",
 };
 
 // ===== ABOUT SECTION =====

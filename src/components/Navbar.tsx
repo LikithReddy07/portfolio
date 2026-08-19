@@ -85,7 +85,17 @@ export function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileOpen(false);
+                    // Let the menu close, then scroll
+                    setTimeout(() => {
+                      const target = document.querySelector(link.href);
+                      if (target) {
+                        target.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }, 250);
+                  }}
                   className="text-body-lg text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
                 >
                   {link.label}

@@ -113,14 +113,14 @@ export function Hero() {
           >
             Get in touch
           </a>
-          <a
+          {/* <a
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
             className="text-body-sm text-text-muted hover:text-text-primary transition-colors duration-300 cursor-pointer"
           >
             View GitHub &rarr;
-          </a>
+          </a> */}
         </motion.div>
       </motion.div>
 
