@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { personalInfo, heroData } from "../config/data";
+import { personalInfo, heroData, cvConfig } from "../config/data";
 
 export function Hero() {
   const containerRef = useRef(null);
@@ -113,6 +113,34 @@ export function Hero() {
           >
             Get in touch
           </a>
+          {cvConfig.enabledInHero && (
+            <a
+              href={cvConfig.url}
+              {...(cvConfig.forceDownload
+                ? {}
+                : { target: "_blank", rel: "noopener noreferrer" })}
+              onClick={
+                cvConfig.forceDownload
+                  ? (e: React.MouseEvent) => {
+                      e.preventDefault();
+                      fetch(cvConfig.url)
+                        .then((res) => res.blob())
+                        .then((blob) => {
+                          const blobUrl = URL.createObjectURL(blob);
+                          const a = document.createElement("a");
+                          a.href = blobUrl;
+                          a.download = "Likith_CV.pdf";
+                          a.click();
+                          URL.revokeObjectURL(blobUrl);
+                        });
+                    }
+                  : undefined
+              }
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary font-medium text-body-sm rounded-sm transition-all duration-300 ease-out hover:border-accent/50 hover:text-text-primary cursor-pointer"
+            >
+              Download CV
+            </a>
+          )}
           {/* <a
             href={personalInfo.github}
             target="_blank"

@@ -10,6 +10,14 @@ export const personalInfo = {
   website: "https://likithreddy07.github.io/portfolio/",
 };
 
+// ===== CV / RESUME =====
+export const cvConfig = {
+  enabledInHero: false,
+  enabledInNavbar: true,
+  url: "https://raw.githubusercontent.com/LikithReddy07/portfolio/refs/heads/main/index.html", // replace with your actual CV PDF URL
+  forceDownload: false,
+};
+
 // ===== HERO SECTION =====
 export const heroData = {
   roles: [

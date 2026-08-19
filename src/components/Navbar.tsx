@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { navLinks, personalInfo } from "../config/data";
+import { navLinks, personalInfo, cvConfig } from "../config/data";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,6 +48,35 @@ export function Navbar() {
           >
             LinkedIn
           </a> */}
+          {cvConfig.enabledInNavbar && (
+            <a
+              href={cvConfig.url}
+              {...(cvConfig.forceDownload
+                ? {}
+                : { target: "_blank", rel: "noopener noreferrer" })}
+              onClick={
+                cvConfig.forceDownload
+                  ? (e: React.MouseEvent) => {
+                      e.preventDefault();
+                      fetch(cvConfig.url)
+                        .then((res) => res.blob())
+                        .then((blob) => {
+                          const blobUrl = URL.createObjectURL(blob);
+                          const a = document.createElement("a");
+                          a.href = blobUrl;
+                          a.download = "Likith_CV.pdf";
+                          a.click();
+                          URL.revokeObjectURL(blobUrl);
+                        });
+                    }
+                  : undefined
+              }
+              className="inline-flex items-center gap-1.5 text-body-sm px-4 py-1.5 border border-border text-text-secondary hover:border-accent/50 hover:text-text-primary rounded-sm transition-all duration-200 cursor-pointer"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              CV
+            </a>
+          )}
         </div>
 
         {/* Mobile toggle */}
