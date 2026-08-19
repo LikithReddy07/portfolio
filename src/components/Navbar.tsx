@@ -7,114 +7,94 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <>
-      {/* Desktop nav */}
-      <motion.nav
-        className="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 rounded-full px-6 py-3 z-50 items-center gap-8"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          background: scrolled ? "rgba(10, 10, 15, 0.8)" : "rgba(255, 255, 255, 0.04)",
-          backdropFilter: "blur(16px)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          boxShadow: scrolled ? "0 0 30px rgba(0, 0, 0, 0.4)" : "none",
-          transition: "background 0.3s, box-shadow 0.3s",
-        }}
-      >
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
+        scrolled
+          ? "bg-bg/90 backdrop-blur-sm border-b border-border"
+          : "bg-transparent"
+      }`}
+    >
+      <nav className="max-w-[var(--container-max)] mx-auto px-[var(--gutter)] h-16 flex items-center justify-between">
+        {/* Logo / Name */}
         <a
           href="#"
-          className="font-[var(--font-display)] text-xl font-bold text-[var(--color-cyan-dim)] tracking-tighter"
+          className="font-display font-bold text-lg text-text-primary hover:text-accent transition-colors duration-200 cursor-pointer"
         >
-          {personalInfo.name}
+          {personalInfo.name.charAt(0) + personalInfo.name.slice(1).toLowerCase()}
         </a>
 
-        <div className="flex gap-6 items-center">
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.href}
               href={link.href}
-              className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors text-sm font-medium"
+              className="text-body-sm text-text-secondary hover:text-text-primary transition-colors duration-200 cursor-pointer"
             >
               {link.label}
             </a>
           ))}
+          <a
+            href={personalInfo.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-body-sm text-text-muted hover:text-accent transition-colors duration-200 cursor-pointer"
+          >
+            LinkedIn
+          </a>
         </div>
 
-        <a
-          href="#"
-          className="bg-[var(--color-cyan)] text-black px-4 py-2 rounded-full font-[var(--font-mono)] text-xs font-medium hover:brightness-125 transition-all"
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5 cursor-pointer"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
         >
-          Resume
-        </a>
-      </motion.nav>
+          <span
+            className={`block w-5 h-px bg-text-primary transition-all duration-300 ${
+              mobileOpen ? "rotate-45 translate-y-[3.5px]" : ""
+            }`}
+          />
+          <span
+            className={`block w-5 h-px bg-text-primary transition-all duration-300 ${
+              mobileOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+            }`}
+          />
+        </button>
+      </nav>
 
-      {/* Mobile nav toggle */}
-      <motion.button
-        className="md:hidden fixed top-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center"
-        style={{
-          background: "rgba(10, 10, 15, 0.8)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-        }}
-        onClick={() => setMobileOpen(!mobileOpen)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        aria-label="Toggle navigation menu"
-      >
-        <span className="text-[var(--color-text-primary)] text-lg">
-          {mobileOpen ? "✕" : "☰"}
-        </span>
-      </motion.button>
-
-      {/* Mobile nav overlay */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="md:hidden fixed inset-0 z-40 flex flex-col items-center justify-center gap-8"
-            style={{
-              background: "rgba(10, 10, 15, 0.95)",
-              backdropFilter: "blur(20px)",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden bg-bg/98 backdrop-blur-sm border-b border-border px-[var(--gutter)] py-8"
           >
-            {navLinks.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                className="font-[var(--font-display)] text-3xl font-bold text-[var(--color-text-primary)] hover:text-[var(--color-cyan)] transition-colors"
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-            <motion.a
-              href="#"
-              className="bg-[var(--color-cyan)] text-black px-6 py-3 rounded-full font-[var(--font-mono)] text-sm font-medium mt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              Resume
-            </motion.a>
+            <div className="flex flex-col gap-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-body-lg text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 }

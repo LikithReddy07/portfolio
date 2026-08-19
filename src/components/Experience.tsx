@@ -1,125 +1,113 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { experienceData, ExperienceEntry } from "../config/data";
+import { experienceData } from "../config/data";
 
-function ExperienceCard({ entry, index }: { entry: ExperienceEntry; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
-  const accentColor = entry.chipStyle === "cyan" ? "#00f0ff" : "#d1bcff";
-  const accentBg = entry.chipStyle === "cyan" ? "rgba(0, 240, 255, 0.07)" : "rgba(209, 188, 255, 0.07)";
+export function Experience() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <motion.div
+    <section
+      id="experience"
       ref={ref}
-      className="rounded-xl p-8 relative group overflow-hidden"
-      style={{
-        background: "rgba(30, 30, 45, 0.7)",
-        backdropFilter: "blur(16px)",
-        border: "1px solid rgba(255, 255, 255, 0.08)",
-      }}
-      initial={{ opacity: 0, y: 60 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{
-        borderColor: "rgba(0, 240, 255, 0.3)",
-        y: -4,
-        transition: { duration: 0.3 },
-      }}
+      className="px-[var(--gutter)] max-w-[var(--container-max)] mx-auto py-[var(--section-gap)]"
     >
-      {/* Accent shape */}
-      <div
-        className="absolute top-0 right-0 w-64 h-64 rounded-bl-full -z-10 transition-colors duration-300"
-        style={{
-          background: accentBg,
-        }}
-      />
+      {/* Section header */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-16"
+      >
+        <p className="font-mono text-label uppercase tracking-widest text-text-muted mb-2">
+          03
+        </p>
+        <h2 className="font-display text-display-md text-text-primary">
+          Experience
+        </h2>
+      </motion.div>
 
-      {/* Awards badge */}
-      {entry.awards && (
-        <div className="absolute top-8 right-8 flex items-center gap-2 bg-[rgba(245,166,35,0.15)] border border-[rgba(245,166,35,0.4)] px-3 py-1 rounded-full">
-          <span className="text-sm">🏆</span>
-          <span className="font-[var(--font-mono)] text-xs text-[var(--color-gold)]">
-            6x Award Winner
-          </span>
+      {/* Timeline */}
+      <div className="space-y-0">
+        {experienceData.map((job, i) => (
+          <ExperienceCard key={job.company} job={job} index={i} parentInView={inView} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ExperienceCard({
+  job,
+  index,
+  parentInView,
+}: {
+  job: (typeof experienceData)[number];
+  index: number;
+  parentInView: boolean;
+}) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
+      animate={parentInView ? { opacity: 1, y: 0 } : {}}
+      transition={{
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.15 * index,
+      }}
+      className="py-10 border-t border-border first:border-t-0"
+    >
+      {/* Header row */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 mb-6">
+        <div className="md:col-span-4">
+          <p className="font-mono text-body-sm text-text-muted">{job.period}</p>
         </div>
-      )}
-
-      {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start mb-6">
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-3xl">{entry.icon}</span>
-            <h3 className="font-[var(--font-display)] text-[32px] font-semibold text-white">
-              {entry.company}
-            </h3>
-          </div>
-          <p className="font-[var(--font-mono)] text-sm" style={{ color: accentColor }}>
-            {entry.role} | {entry.period}
-          </p>
-          <p className="font-[var(--font-body)] text-sm text-[#a0b0b2] mt-1">
-            {entry.subtitle}
+        <div className="md:col-span-8">
+          <h3 className="font-display text-[1.25rem] font-semibold text-text-primary leading-tight">
+            {job.role}
+          </h3>
+          <p className="text-body-md text-text-secondary mt-1">
+            {job.company}
+            <span className="text-text-muted"> — {job.subtitle}</span>
           </p>
         </div>
       </div>
 
       {/* Achievements */}
-      <ul className="space-y-3 mb-8">
-        {entry.achievements.map((achievement, i) => (
-          <motion.li
-            key={i}
-            className="flex items-start gap-3 text-[#b8c8ca] text-base leading-relaxed"
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.4 + i * 0.08, duration: 0.5 }}
-          >
-            <span style={{ color: accentColor }} className="mt-1.5 text-sm">
-              ▹
-            </span>
-            <span>{achievement}</span>
-          </motion.li>
-        ))}
-      </ul>
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
+        <div className="md:col-span-4" />
+        <div className="md:col-span-8">
+          <ul className="space-y-3 mb-6">
+            {job.achievements.map((item, i) => (
+              <li
+                key={i}
+                className="text-body-md text-text-secondary pl-4 relative before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-px before:bg-text-muted"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
 
-      {/* Tech Chips */}
-      <div className="flex flex-wrap gap-3">
-        {entry.chips.map((chip) => (
-          <span
-            key={chip}
-            className={entry.chipStyle === "cyan" ? "tech-chip" : "tech-chip tech-chip-violet"}
-          >
-            {chip}
-          </span>
-        ))}
+          {/* Tech chips */}
+          <div className="flex flex-wrap gap-2">
+            {job.chips.map((chip) => (
+              <span
+                key={chip}
+                className="px-3 py-1 rounded-sm bg-surface border border-border text-body-sm text-text-muted font-mono"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+
+          {/* Awards */}
+          {job.awards && (
+            <p className="mt-4 text-body-sm text-accent/80 font-medium">
+              {job.awards}
+            </p>
+          )}
+        </div>
       </div>
-    </motion.div>
-  );
-}
-
-export function Experience() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-
-  return (
-    <section
-      ref={sectionRef}
-      id="experience"
-      className="mb-[var(--spacing-section)] pt-20"
-    >
-      <motion.h2
-        className="font-[var(--font-display)] text-[48px] md:text-[80px] font-bold leading-tight tracking-[-0.02em] text-[var(--color-text-primary)] mb-16 text-right"
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      >
-        Execution <span className="text-[#d1bcff]">Logs</span>
-      </motion.h2>
-
-      <div className="grid grid-cols-1 gap-8">
-        {experienceData.map((entry, index) => (
-          <ExperienceCard key={entry.company} entry={entry} index={index} />
-        ))}
-      </div>
-    </section>
+    </motion.article>
   );
 }

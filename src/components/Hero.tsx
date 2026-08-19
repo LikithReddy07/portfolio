@@ -1,103 +1,83 @@
 import { motion } from "framer-motion";
-import { MorphingText } from "./MorphingText";
-import { Icosahedron } from "./Icosahedron";
-import { FloatingTerminal } from "./FloatingTerminal";
 import { personalInfo, heroData } from "../config/data";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center relative pt-32 pb-[160px]">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Left side — Text */}
-        <div className="z-10">
-          <motion.h1
-            className="font-[var(--font-display)] text-[48px] md:text-[120px] font-bold leading-[1.1] tracking-[-0.04em] text-gradient mb-6"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {personalInfo.name}
-          </motion.h1>
+    <section className="min-h-screen flex flex-col justify-center px-[var(--gutter)] max-w-[var(--container-max)] mx-auto">
+      <div className="pt-32 pb-20 md:pt-40 md:pb-32">
+        {/* Label */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="font-mono text-label uppercase tracking-widest text-text-muted mb-6"
+        >
+          {personalInfo.location}
+        </motion.p>
 
-          <motion.div
-            className="font-[var(--font-display)] text-[32px] leading-[40px] font-semibold mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <MorphingText />
-          </motion.div>
+        {/* Name — the centerpiece */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className="font-display text-display-xl text-text-primary mb-6"
+        >
+          {personalInfo.name}
+          <span className="text-accent">.</span>
+        </motion.h1>
 
-          <motion.p
-            className="font-[var(--font-body)] text-lg leading-7 text-[var(--color-text-secondary)] max-w-xl mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            {heroData.tagline}
-          </motion.p>
+        {/* Role */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="font-display text-display-md text-text-secondary mb-8 max-w-[600px]"
+        >
+          {personalInfo.title}
+        </motion.p>
 
-          <motion.div
-            className="flex gap-4 flex-wrap"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-          >
-            <a
-              href="#contact"
-              className="bg-[var(--color-cyan)] text-black px-8 py-4 rounded-full font-[var(--font-mono)] text-sm font-medium hover:brightness-125 transition-all hover:scale-105 inline-block"
-            >
-              Let&apos;s Connect
-            </a>
-            <a
-              href="#experience"
-              className="glass-panel px-8 py-4 rounded-full font-[var(--font-mono)] text-sm text-[var(--color-text-primary)] hover:text-[var(--color-cyan)] transition-all hover:scale-105 inline-block"
-            >
-              View Experience
-            </a>
-          </motion.div>
-        </div>
+        {/* Tagline */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
+          className="text-body-lg text-text-secondary max-w-[540px] leading-relaxed"
+        >
+          {heroData.tagline}
+        </motion.p>
 
-        {/* Right side — 3D Icosahedron + Terminal */}
-        <div className="relative h-[500px] lg:h-[600px] w-full z-0 hidden lg:block">
-          <motion.div
-            className="absolute inset-0"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        {/* CTA row */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+          className="mt-12 flex items-center gap-6"
+        >
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-bg font-medium text-body-sm rounded-sm transition-all duration-300 ease-out hover:opacity-90 cursor-pointer"
           >
-            <Icosahedron />
-          </motion.div>
-
-          {/* Floating Terminal */}
-          <div className="absolute bottom-10 left-[-30px]">
-            <FloatingTerminal />
-          </div>
-        </div>
+            Get in touch
+          </a>
+          <a
+            href={personalInfo.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-body-sm text-text-muted hover:text-text-primary transition-colors duration-300 cursor-pointer"
+          >
+            View GitHub &rarr;
+          </a>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-50"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        style={{ animation: "bounce 2s infinite" }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-10 left-[var(--gutter)]"
       >
-        <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-muted)] mb-2">
-          Scroll
-        </span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          className="text-[var(--color-text-muted)]"
-        >
-          <path d="M12 5v14M5 12l7 7 7-7" />
-        </svg>
+        <div className="w-px h-16 bg-gradient-to-b from-text-muted/60 to-transparent" />
       </motion.div>
     </section>
   );

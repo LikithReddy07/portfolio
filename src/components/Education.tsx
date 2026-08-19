@@ -1,100 +1,65 @@
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { educationData } from "../config/data";
 
 export function Education() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-
-  const primary = educationData[0];
-  const secondary = educationData.slice(1);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section
-      ref={sectionRef}
       id="education"
-      className="mb-[var(--spacing-section)] pt-20"
+      ref={ref}
+      className="px-[var(--gutter)] max-w-[var(--container-max)] mx-auto py-[var(--section-gap)]"
     >
-      <motion.h2
-        className="font-[var(--font-display)] text-[48px] md:text-[80px] font-bold leading-tight tracking-[-0.02em] text-[var(--color-text-primary)] mb-16"
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      {/* Section header */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-16"
       >
-        Education
-      </motion.h2>
+        <p className="font-mono text-label uppercase tracking-widest text-text-muted mb-2">
+          04
+        </p>
+        <h2 className="font-display text-display-md text-text-primary">
+          Education
+        </h2>
+      </motion.div>
 
-      {/* Bento grid: left = BE (tall), right = PU + School stacked */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Bachelor's — tall card spanning full left height */}
-        <motion.div
-          className="rounded-xl p-8 md:p-10 relative row-span-2 flex flex-col justify-center"
-          style={{
-            background: "rgba(30, 30, 45, 0.7)",
-            backdropFilter: "blur(16px)",
-            border: "1px solid rgba(0, 240, 255, 0.15)",
-          }}
-          initial={{ opacity: 0, x: -40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          {/* Accent glow */}
-          <div className="absolute top-0 right-0 w-40 h-40 bg-[rgba(0,240,255,0.08)] rounded-bl-full" />
-
-          <span className="text-4xl mb-4">{primary.icon}</span>
-          <h3 className="font-[var(--font-display)] text-[28px] md:text-[36px] font-bold text-white leading-tight mb-2">
-            {primary.degree}
-          </h3>
-          {primary.major && (
-            <p className="font-[var(--font-mono)] text-sm text-[var(--color-cyan)] mb-4">
-              Major: {primary.major}
-            </p>
-          )}
-          <p className="font-[var(--font-body)] text-lg text-[#c0d0d2] mb-6">
-            {primary.institution}
-          </p>
-          <div className="flex items-center gap-3">
-            <span className="font-[var(--font-mono)] text-sm text-[var(--color-cyan)]">
-              {primary.period}
-            </span>
-            {primary.location && (
-              <>
-                <span className="text-[#607070]">•</span>
-                <span className="font-[var(--font-mono)] text-sm text-[#a0b0b2]">
-                  {primary.location}
-                </span>
-              </>
-            )}
-          </div>
-        </motion.div>
-
-        {/* Secondary entries stacked on the right */}
-        {secondary.map((entry, i) => (
+      {/* Entries */}
+      <div className="space-y-0">
+        {educationData.map((entry, i) => (
           <motion.div
             key={entry.institution}
-            className="rounded-xl p-6 md:p-8 flex flex-col justify-center"
-            style={{
-              background: "rgba(30, 30, 45, 0.7)",
-              backdropFilter: "blur(16px)",
-              border: "1px solid rgba(255, 255, 255, 0.08)",
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.5,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.1 * i,
             }}
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.35 + i * 0.15 }}
+            className="py-6 border-t border-border first:border-t-0 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8"
           >
-            <div className="flex items-start gap-4">
-              <span className="text-2xl">{entry.icon}</span>
-              <div>
-                <h3 className="font-[var(--font-display)] text-[20px] md:text-[24px] font-semibold text-white leading-tight">
-                  {entry.degree}
-                </h3>
-                <p className="font-[var(--font-body)] text-base text-[#c0d0d2] mt-1">
-                  {entry.institution}
-                </p>
-                <span className="font-[var(--font-mono)] text-sm text-[#a0b0b2] mt-2 inline-block">
-                  {entry.period}
-                </span>
-              </div>
+            <div className="md:col-span-4">
+              <p className="font-mono text-body-sm text-text-muted">
+                {entry.period}
+              </p>
+            </div>
+            <div className="md:col-span-8">
+              <h3 className="font-display text-body-lg font-semibold text-text-primary">
+                {entry.degree}
+                {entry.major && (
+                  <span className="text-text-secondary font-normal">
+                    {" "}
+                    — {entry.major}
+                  </span>
+                )}
+              </h3>
+              <p className="text-body-md text-text-muted mt-1">
+                {entry.institution}
+                {entry.location && `, ${entry.location}`}
+              </p>
             </div>
           </motion.div>
         ))}
