@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="px-[var(--gutter)] max-w-[var(--container-max)] mx-auto py-12 border-t border-border">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <p className="text-body-sm text-text-muted">
-          &copy; {new Date().getFullYear()} {personalInfo.name.charAt(0) + personalInfo.name.slice(1).toLowerCase()}. Built with intent.
+          &copy; {new Date().getFullYear()} {personalInfo.name.charAt(0) + personalInfo.name.slice(1).toLowerCase()}
         </p>
         <div className="flex items-center gap-6">
           <a
