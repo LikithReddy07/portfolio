@@ -15,7 +15,7 @@ export const cvConfig = {
   enabledInHero: false,
   enabledInNavbar: true,
   url: "https://github.com/LikithReddy07/portfolio/blob/0868c3cf567adb733ded819fede34121b3ce82b3/public/Likith_CV_V2.pdf", // replace with your actual CV PDF URL
-  forceDownload: false,
+  forceDownload: true,
 };
 
 // ===== HERO SECTION =====
