@@ -1,10 +1,53 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { personalInfo, heroData } from "../config/data";
 
 export function Hero() {
+  const containerRef = useRef(null);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Cycle roles every 3s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % heroData.roles.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Parallax: text moves slower, decorative elements move faster
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const decoY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const decoOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
   return (
-    <section className="min-h-screen flex flex-col justify-center px-[var(--gutter)] max-w-[var(--container-max)] mx-auto">
-      <div className="pt-32 pb-20 md:pt-40 md:pb-32">
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col justify-center px-[var(--gutter)] max-w-[var(--container-max)] mx-auto overflow-hidden"
+    >
+      {/* Large decorative number — parallax layer */}
+      <motion.div
+        style={{ y: decoY, opacity: decoOpacity }}
+        className="absolute top-[15%] right-[5%] select-none pointer-events-none hidden lg:block"
+        aria-hidden="true"
+      >
+        <span className="font-display text-[20rem] font-bold leading-none text-white/[0.02]">
+          LR
+        </span>
+      </motion.div>
+
+      {/* Accent line — decorative */}
+      <motion.div
+        style={{ y: decoY }}
+        className="absolute top-[30%] right-[15%] w-px h-[200px] bg-gradient-to-b from-accent/40 to-transparent hidden md:block"
+        aria-hidden="true"
+      />
+
+      {/* Main content — parallax layer */}
+      <motion.div style={{ y: textY }} className="pt-32 pb-20 md:pt-40 md:pb-32 relative z-10">
         {/* Label */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -26,15 +69,26 @@ export function Hero() {
           <span className="text-accent">.</span>
         </motion.h1>
 
-        {/* Role */}
-        <motion.p
+        {/* Role — cycling */}
+        <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="font-display text-display-md text-text-secondary mb-8 max-w-[600px]"
+          className="font-display text-display-md text-text-secondary mb-8 max-w-[600px] h-[1.3em] relative overflow-hidden"
         >
-          {personalInfo.title}
-        </motion.p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={heroData.roles[roleIndex]}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute"
+            >
+              {heroData.roles[roleIndex]}
+            </motion.p>
+          </AnimatePresence>
+        </motion.div>
 
         {/* Tagline */}
         <motion.p
@@ -68,16 +122,19 @@ export function Hero() {
             View GitHub &rarr;
           </a>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — fades on scroll */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
+        style={{ opacity: decoOpacity }}
         className="absolute bottom-10 left-[var(--gutter)]"
       >
-        <div className="w-px h-16 bg-gradient-to-b from-text-muted/60 to-transparent" />
+        <div className="flex flex-col items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-text-muted/50 [writing-mode:vertical-lr]">
+            scroll
+          </span>
+          <div className="w-px h-12 bg-gradient-to-b from-text-muted/40 to-transparent" />
+        </div>
       </motion.div>
     </section>
   );

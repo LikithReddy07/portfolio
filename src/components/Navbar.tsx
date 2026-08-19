@@ -40,14 +40,14 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
+          {/* <a
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-body-sm text-text-muted hover:text-accent transition-colors duration-200 cursor-pointer"
           >
             LinkedIn
-          </a>
+          </a> */}
         </div>
 
         {/* Mobile toggle */}

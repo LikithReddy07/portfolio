@@ -1,6 +1,6 @@
 // ===== PERSONAL INFO =====
 export const personalInfo = {
-  name: "LIKITH",
+  name: "Likith",
   title: "Full Stack Developer",
   location: "Bengaluru, India",
   phone: "+91 9538279547",

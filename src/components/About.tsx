@@ -10,7 +10,7 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="px-[var(--gutter)] max-w-[var(--container-max)] mx-auto py-[var(--section-gap)]"
+      className="min-h-screen flex items-center px-[var(--gutter)] max-w-[var(--container-max)] mx-auto py-[var(--section-gap)]"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
         {/* Left — section label */}
